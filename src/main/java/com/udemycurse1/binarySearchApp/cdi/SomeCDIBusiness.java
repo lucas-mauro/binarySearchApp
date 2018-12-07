@@ -9,6 +9,11 @@ public class SomeCDIBusiness {
 	@Inject
 	SomeCdiDao someCdiDao;
 
+	public SomeCDIBusiness(SomeCdiDao someCdiDao) {
+		super();
+		this.someCdiDao = someCdiDao;
+	}
+
 	public SomeCdiDao getSomeCdiDao() {
 		return someCdiDao;
 	}
@@ -17,5 +22,13 @@ public class SomeCDIBusiness {
 		this.someCdiDao = someCdiDao;
 	}
 	
-	
+	public int findGreatest() {
+		int greatest = Integer.MIN_VALUE;
+		int[] data = someCdiDao.gatData();
+		for(int value:data) {
+			if(value > greatest)
+				greatest = value;
+		}
+		return greatest;
+	}
 }
